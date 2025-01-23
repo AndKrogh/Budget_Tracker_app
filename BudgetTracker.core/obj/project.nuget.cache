@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "T92cpAC/EiA=",
+  "success": true,
+  "projectFilePath": "A:\\Budget_Tracker_app\\BudgetTracker.core\\BudgetTracker.core.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\PCUser\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\9.0.1\\microsoft.extensions.dependencyinjection.9.0.1.nupkg.sha512",
+    "C:\\Users\\PCUser\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\9.0.1\\microsoft.extensions.dependencyinjection.abstractions.9.0.1.nupkg.sha512",
+    "C:\\Users\\PCUser\\.nuget\\packages\\microsoft.net.sdk.compilers.toolset\\9.0.102\\microsoft.net.sdk.compilers.toolset.9.0.102.nupkg.sha512"
+  ],
+  "logs": []
+}
