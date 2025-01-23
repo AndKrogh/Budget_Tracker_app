@@ -1,7 +1,9 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 @{
-	Layout = "main.cshtml";
+	Layout = null;
 }
 
-@await Html.PartialAsync("Login_status")
+ @await Html.PartialAsync("Navigation")
+
+ @RenderBody()
