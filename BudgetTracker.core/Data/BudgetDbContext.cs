@@ -1,12 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BudgetTracker.core.Models;
+using Microsoft.EntityFrameworkCore;
 
-namespace BudgetTracker.core.Data
+namespace BudgetTracker.Core.Data
 {
-    internal class BudgetDbContext
+    public class BudgetDbContext : DbContext
     {
+        public BudgetDbContext(DbContextOptions<BudgetDbContext> options)
+            : base(options)
+        {
+        }
+
+        public DbSet<BudgetEntry> BudgetEntries { get; set; }
+        public DbSet<ExpenseReport> ExpenseReports { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<UserBudgetSummary> UserBudgetSummaries { get; set; }
+        public DbSet<Budget> Budgets { get; set; }
+        public DbSet<ExpenseForecast> ExpenseForecasts { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            // BudgetEntry -> User (Many-to-One)
+            modelBuilder.Entity<BudgetEntry>()
+                .HasOne(be => be.User)
+                .WithMany(u => u.BudgetEntries)
+                .HasForeignKey(be => be.UserId);
+
+            // ExpenseReport -> User (Many-to-One)
+            modelBuilder.Entity<ExpenseReport>()
+                .HasOne(er => er.User)
+                .WithMany(u => u.ExpenseReports)
+                .HasForeignKey(er => er.UserId);
+
+            // UserBudgetSummary -> User (One-to-One)
+            modelBuilder.Entity<UserBudgetSummary>()
+                .HasOne(ubs => ubs.User)
+                .WithOne(u => u.UserBudgetSummary)
+                .HasForeignKey<UserBudgetSummary>(ubs => ubs.UserId);
+        }
     }
 }
