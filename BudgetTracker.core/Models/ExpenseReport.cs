@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BudgetTracker.core.Models
+﻿namespace BudgetTracker.core.Models
 {
-    internal class ExpenseReport
+    public class ExpenseReport
     {
+        public string Category { get; set; }
+        public decimal TotalAmount { get; set; }
     }
 }
