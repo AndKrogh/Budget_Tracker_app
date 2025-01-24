@@ -2,7 +2,11 @@
 {
     public class ExpenseReport
     {
-        public string Category { get; set; }
-        public decimal TotalAmount { get; set; }
+        public int Id { get; set; }
+        public int UserId { get; set; }
+        public string ReportName { get; set; }
+        public DateTime GeneratedDate { get; set; }
+
+        public User User { get; set; }
     }
 }
