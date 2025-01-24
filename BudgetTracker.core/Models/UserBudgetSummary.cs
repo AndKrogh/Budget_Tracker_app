@@ -1,6 +1,9 @@
 ﻿namespace BudgetTracker.core.Models
 {
-    internal class UserBudgetSummary
+    public class UserBudgetSummary
     {
+        public decimal TotalIncome { get; set; }
+        public decimal TotalExpenses { get; set; }
+        public decimal NetBalance { get; set; }
     }
 }
