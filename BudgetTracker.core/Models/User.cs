@@ -7,8 +7,9 @@
         public string Email { get; set; }
         public string PasswordHash { get; set; }
 
-        public ICollection<BudgetEntry> BudgetEntries { get; set; } = new List<BudgetEntry>();
-        public ICollection<ExpenseReport> ExpenseReports { get; set; } = new List<ExpenseReport>();
+        public ICollection<Budget> Budgets { get; set; }
+        public ICollection<BudgetEntry> BudgetEntries { get; set; } 
+        public ICollection<ExpenseReport> ExpenseReports { get; set; } 
         public UserBudgetSummary UserBudgetSummary { get; set; }
     }
 }

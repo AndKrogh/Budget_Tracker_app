@@ -38,6 +38,24 @@ namespace BudgetTracker.Core.Data
                 .HasOne(ubs => ubs.User)
                 .WithOne(u => u.UserBudgetSummary)
                 .HasForeignKey<UserBudgetSummary>(ubs => ubs.UserId);
+
+            // Budget -> User (Many-to-One)
+            modelBuilder.Entity<Budget>()
+                .HasOne(b => b.User)
+                .WithMany(u => u.Budgets)
+                .HasForeignKey(b => b.UserId);
+
+            // BudgetEntry -> Budget (Many-to-One)
+            modelBuilder.Entity<BudgetEntry>()
+                .HasOne(be => be.Budget)
+                .WithMany(b => b.BudgetEntries)
+                .HasForeignKey(be => be.BudgetId);
+
+            // ExpenseForecast -> Budget (Many-to-One)
+            modelBuilder.Entity<ExpenseForecast>()
+                .HasOne(ef => ef.Budget)
+                .WithMany(b => b.ExpenseForecasts)
+                .HasForeignKey(ef => ef.BudgetId);
         }
     }
 }
