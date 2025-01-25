@@ -25,37 +25,43 @@ namespace BudgetTracker.Core.Data
             modelBuilder.Entity<BudgetEntry>()
                 .HasOne(be => be.User)
                 .WithMany(u => u.BudgetEntries)
-                .HasForeignKey(be => be.UserId);
+                .HasForeignKey(be => be.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             // ExpenseReport -> User (Many-to-One)
             modelBuilder.Entity<ExpenseReport>()
                 .HasOne(er => er.User)
                 .WithMany(u => u.ExpenseReports)
-                .HasForeignKey(er => er.UserId);
+                .HasForeignKey(er => er.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             // UserBudgetSummary -> User (One-to-One)
             modelBuilder.Entity<UserBudgetSummary>()
                 .HasOne(ubs => ubs.User)
                 .WithOne(u => u.UserBudgetSummary)
-                .HasForeignKey<UserBudgetSummary>(ubs => ubs.UserId);
+                .HasForeignKey<UserBudgetSummary>(ubs => ubs.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             // Budget -> User (Many-to-One)
             modelBuilder.Entity<Budget>()
                 .HasOne(b => b.User)
                 .WithMany(u => u.Budgets)
-                .HasForeignKey(b => b.UserId);
+                .HasForeignKey(b => b.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             // BudgetEntry -> Budget (Many-to-One)
             modelBuilder.Entity<BudgetEntry>()
                 .HasOne(be => be.Budget)
                 .WithMany(b => b.BudgetEntries)
-                .HasForeignKey(be => be.BudgetId);
+                .HasForeignKey(be => be.BudgetId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             // ExpenseForecast -> Budget (Many-to-One)
             modelBuilder.Entity<ExpenseForecast>()
                 .HasOne(ef => ef.Budget)
                 .WithMany(b => b.ExpenseForecasts)
-                .HasForeignKey(ef => ef.BudgetId);
+                .HasForeignKey(ef => ef.BudgetId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

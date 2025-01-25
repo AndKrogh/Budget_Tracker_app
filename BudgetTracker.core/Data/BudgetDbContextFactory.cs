@@ -7,7 +7,7 @@ public class BudgetDbContextFactory : IDesignTimeDbContextFactory<BudgetDbContex
     public BudgetDbContext CreateDbContext(string[] args)
     {
         var optionsBuilder = new DbContextOptionsBuilder<BudgetDbContext>();
-        optionsBuilder.UseSqlServer("Server=localhost;Database=BudgetTrackerDb;Trusted_Connection=True;");
+        optionsBuilder.UseSqlServer("Server=localhost;Database=BudgetTrackerDb;Trusted_Connection=True;TrustServerCertificate=true;");
 
         return new BudgetDbContext(optionsBuilder.Options);
     }

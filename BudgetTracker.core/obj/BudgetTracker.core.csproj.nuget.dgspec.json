@@ -54,6 +54,10 @@
               "target": "Package",
               "version": "[4.8.0, )"
             },
+            "Microsoft.CodeAnalysis.CSharp.Workspaces": {
+              "target": "Package",
+              "version": "[4.8.0, )"
+            },
             "Microsoft.CodeAnalysis.Common": {
               "target": "Package",
               "version": "[4.8.0, )"
