@@ -1,20 +1,14 @@
-﻿using BudgetTracker.core.Models;
+﻿using BudgetTracker.Core.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 
-public class BudgetDbContext : DbContext
+public class BudgetDbContextFactory : IDesignTimeDbContextFactory<BudgetDbContext>
 {
-    public BudgetDbContext(DbContextOptions<BudgetDbContext> options)
-        : base(options)
+    public BudgetDbContext CreateDbContext(string[] args)
     {
-    }
+        var optionsBuilder = new DbContextOptionsBuilder<BudgetDbContext>();
+        optionsBuilder.UseSqlServer("Server=localhost;Database=BudgetTrackerDb;Trusted_Connection=True;");
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        if (!optionsBuilder.IsConfigured)
-        {
-            optionsBuilder.UseSqlServer("Server=localhost;Database=BudgetTrackerDb;Trusted_Connection=True;");
-        }
+        return new BudgetDbContext(optionsBuilder.Options);
     }
-
-    public DbSet<Budget> Budgets { get; set; }
 }
