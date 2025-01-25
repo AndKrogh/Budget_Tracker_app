@@ -9,6 +9,7 @@
       "BudgetTracker.web/1.0.0": {
         "dependencies": {
           "BudgetTracker.core": "1.0.0",
+          "Microsoft.EntityFrameworkCore.SqlServer": "9.0.1",
           "Swashbuckle.AspNetCore": "6.6.2"
         },
         "runtime": {

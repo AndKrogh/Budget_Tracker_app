@@ -3260,6 +3260,7 @@
   "projectFileDependencyGroups": {
     "net8.0": [
       "BudgetTracker.core >= 1.0.0",
+      "Microsoft.EntityFrameworkCore.SqlServer >= 9.0.1",
       "Swashbuckle.AspNetCore >= 6.6.2"
     ]
   },
@@ -3270,11 +3271,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "A:\\Budget_Tracker_app\\BudgetTracker.Web\\BudgetTracker.web.csproj",
+      "projectUniqueName": "A:\\Budget_Tracker_app\\BudgetTracker.web\\BudgetTracker.web.csproj",
       "projectName": "BudgetTracker.web",
-      "projectPath": "A:\\Budget_Tracker_app\\BudgetTracker.Web\\BudgetTracker.web.csproj",
+      "projectPath": "A:\\Budget_Tracker_app\\BudgetTracker.web\\BudgetTracker.web.csproj",
       "packagesPath": "C:\\Users\\PCUser\\.nuget\\packages\\",
-      "outputPath": "A:\\Budget_Tracker_app\\BudgetTracker.Web\\obj\\",
+      "outputPath": "A:\\Budget_Tracker_app\\BudgetTracker.web\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -3318,6 +3319,10 @@
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
+          "Microsoft.EntityFrameworkCore.SqlServer": {
+            "target": "Package",
+            "version": "[9.0.1, )"
+          },
           "Swashbuckle.AspNetCore": {
             "target": "Package",
             "version": "[6.6.2, )"
