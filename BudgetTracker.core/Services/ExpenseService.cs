@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BudgetTracker.core.Services
+﻿namespace BudgetTracker.core.Services
 {
     internal class ExpenseService
     {
