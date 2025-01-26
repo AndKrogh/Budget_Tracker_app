@@ -1,3 +1,4 @@
+using BudgetTracker.core.Services;
 using BudgetTracker.Core.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,6 +10,10 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 
 builder.Services.AddDbContext<BudgetDbContext>(options =>
     options.UseSqlServer(connectionString));
+
+builder.Services.AddScoped<BudgetService>();
+builder.Services.AddScoped<ExpenseService>();
+builder.Services.AddScoped<ReportService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
