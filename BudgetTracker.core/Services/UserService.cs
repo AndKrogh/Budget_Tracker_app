@@ -36,5 +36,18 @@ namespace BudgetTracker.core.Services
         {
             return await _userRepository.DeleteAsync(userId);
         }
+
+        public async Task<User> LoginAsync(string username, string password)
+        {
+            var user = (await _userRepository.GetAllAsync())
+                         .FirstOrDefault(u => u.Username == username && u.PasswordHash == password);
+            return user;
+        }
+
+        public async Task<bool> LogoutAsync()
+        {
+            await Task.CompletedTask;
+            return true;
+        }
     }
 }
