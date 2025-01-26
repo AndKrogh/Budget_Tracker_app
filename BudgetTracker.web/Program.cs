@@ -1,9 +1,11 @@
 using BudgetTracker.core.Services;
 using BudgetTracker.Core.Data;
+using BudgetTracker.Core.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCoreServices();
 // Add services to the container.
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");

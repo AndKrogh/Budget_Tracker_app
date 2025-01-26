@@ -1,12 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BudgetTracker.core.Repositories;
+using BudgetTracker.core.Services;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace BudgetTracker.core.Extensions
+namespace BudgetTracker.Core.Extensions
 {
-    internal class ServiceCollectionExtensions
+    public static class ServiceCollectionExtensions
     {
+        public static IServiceCollection AddCoreServices(this IServiceCollection services)
+        {
+            services.AddScoped<BudgetRepository>();
+            services.AddScoped<UserRepository>();
+
+            services.AddScoped<BudgetService>();
+            services.AddScoped<ExpenseService>();
+            services.AddScoped<ReportService>();
+            services.AddScoped<UserService>();
+
+            return services;
+        }
     }
 }
