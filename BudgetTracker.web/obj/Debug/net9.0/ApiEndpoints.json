@@ -83,5 +83,21 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BudgetTracker.web.Controllers.ExpenseController",
+    "Method": "GetExpensesByBudgetIdAsync",
+    "RelativePath": "api/Expense/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]
