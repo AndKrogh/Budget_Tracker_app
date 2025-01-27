@@ -1,0 +1,8 @@
+A:\Budget_Tracker_app\BudgetTracker.web\obj\Debug\net9.0\BudgetTracker.web.csproj.AssemblyReference.cache
+A:\Budget_Tracker_app\BudgetTracker.web\obj\Debug\net9.0\BudgetTracker.web.GeneratedMSBuildEditorConfig.editorconfig
+A:\Budget_Tracker_app\BudgetTracker.web\obj\Debug\net9.0\BudgetTracker.web.AssemblyInfoInputs.cache
+A:\Budget_Tracker_app\BudgetTracker.web\obj\Debug\net9.0\BudgetTracker.web.AssemblyInfo.cs
+A:\Budget_Tracker_app\BudgetTracker.web\obj\Debug\net9.0\BudgetTracker.web.csproj.CoreCompileInputs.cache
+A:\Budget_Tracker_app\BudgetTracker.web\obj\Debug\net9.0\BudgetTracker.web.MvcApplicationPartsAssemblyInfo.cs
+A:\Budget_Tracker_app\BudgetTracker.web\obj\Debug\net9.0\BudgetTracker.web.MvcApplicationPartsAssemblyInfo.cache
+A:\Budget_Tracker_app\BudgetTracker.web\obj\Debug\net9.0\BudgetTracker.web.sourcelink.json
