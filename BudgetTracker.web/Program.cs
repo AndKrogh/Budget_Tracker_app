@@ -17,6 +17,7 @@ builder.Services.AddDbContext<BudgetDbContext>(options =>
 builder.Services.AddScoped<BudgetService>();
 builder.Services.AddScoped<ExpenseService>();
 builder.Services.AddScoped<ReportService>();
+builder.Services.AddScoped<UserService>();
 
 builder.Services.AddHttpClient<BackofficeUserService>(client =>
 {
