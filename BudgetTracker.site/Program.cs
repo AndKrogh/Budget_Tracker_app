@@ -10,11 +10,6 @@ builder.CreateUmbracoBuilder()
 // Add controllers
 builder.Services.AddControllers();
 
-builder.Services.AddHttpClient<UserController>(client =>
-{
-    client.BaseAddress = new Uri("https://localhost:44343");
-});
-
 WebApplication app = builder.Build();
 
 await app.BootUmbracoAsync();

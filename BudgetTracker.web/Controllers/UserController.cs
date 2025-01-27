@@ -1,5 +1,6 @@
 ﻿using BudgetTracker.core.Models;
 using BudgetTracker.core.Services;
+using BudgetTracker.web.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BudgetTracker.web.Controllers
@@ -9,12 +10,12 @@ namespace BudgetTracker.web.Controllers
     public class UserController : ControllerBase
     {
         private readonly UserService _userService;
-        private readonly BackofficeUserController BackofficeUserController;
+        private readonly BackofficeUserService _backofficeUserService;
 
-        public UserController(UserService userService, BackofficeUserController BackofficeUserController)
+        public UserController(UserService userService, BackofficeUserService backofficeUserService)
         {
             _userService = userService;
-            BackofficeUserController = BackofficeUserController;
+            _backofficeUserService = backofficeUserService;
         }
 
         [HttpPost("register")]
@@ -75,40 +76,85 @@ namespace BudgetTracker.web.Controllers
             }
         }
 
-        [HttpPost("import-from-backoffice/{username}")]
-        public async Task<IActionResult> ImportFromBackoffice(string username)
+        [HttpPost("import-all-from-backoffice")]
+        public async Task<IActionResult> ImportAllFromBackoffice()
         {
-            if (string.IsNullOrWhiteSpace(username))
-                return BadRequest(new { Message = "Username is required." });
-
             try
             {
-                var backofficeUser = await _backofficeUserService.GetBackofficeUserAsync(username);
-                if (backofficeUser == null)
-                    return NotFound(new { Message = $"No user found with username '{username}' in backoffice." });
+                var backofficeUsers = await _backofficeUserService.GetAllBackofficeUsersAsync();
 
-                var user = new User
-                {
-                    Username = backofficeUser.Username,
-                    Email = backofficeUser.Email,
-                    PasswordHash = "default-hash",
-                };
+                if (backofficeUsers == null || !backofficeUsers.Any())
+                    return NotFound(new { Message = "No users found in the backoffice." });
 
                 var existingUsers = await _userService.GetAllUsersAsync();
-                if (existingUsers.Any(u => u.Username == user.Username))
-                    return Conflict(new { Message = "User already exists in the database." });
 
-                // Save the user to the database
-                var success = await _userService.CreateUserAsync(user);
-                if (!success)
-                    return StatusCode(500, new { Message = "Failed to save the user to the database." });
+                var importedCount = 0;
+                foreach (var backofficeUser in backofficeUsers)
+                {
+                    // Skip if user already exists
+                    if (existingUsers.Any(u => u.Username == backofficeUser.Username))
+                        continue;
 
-                return Ok(new { Message = "User imported successfully from backoffice." });
+                    // Create a new user
+                    var user = new User
+                    {
+                        Username = backofficeUser.Username,
+                        Email = backofficeUser.Email,
+                        PasswordHash = "default-hash",
+                    };
+
+                    // Save the user
+                    var success = await _userService.CreateUserAsync(user);
+                    if (success)
+                        importedCount++;
+                    else
+                        Console.WriteLine($"Failed to import user {backofficeUser.Username}");
+                }
+
+                return Ok(new { Message = $"{importedCount} users imported successfully from backoffice." });
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { Message = "An error occurred while importing the user.", Details = ex.Message });
+                return StatusCode(500, new { Message = "An error occurred while importing users.", Details = ex.Message });
             }
         }
+
+
+
+        //[HttpPost("import-from-backoffice/{username}")]
+        //public async Task<IActionResult> ImportFromBackoffice(string username)
+        //{
+        //    if (string.IsNullOrWhiteSpace(username))
+        //        return BadRequest(new { Message = "Username is required." });
+
+        //    try
+        //    {
+        //        var backofficeUser = await _backofficeUserService.GetBackofficeUserAsync(username);
+        //        if (backofficeUser == null)
+        //            return NotFound(new { Message = $"No user found with username '{username}' in backoffice." });
+
+        //        var user = new User
+        //        {
+        //            Username = backofficeUser.Username,
+        //            Email = backofficeUser.Email,
+        //            PasswordHash = "default-hash",
+        //        };
+
+        //        var existingUsers = await _userService.GetAllUsersAsync();
+        //        if (existingUsers.Any(u => u.Username == user.Username))
+        //            return Conflict(new { Message = "User already exists in the database." });
+
+        //        // Save the user to the database
+        //        var success = await _userService.CreateUserAsync(user);
+        //        if (!success)
+        //            return StatusCode(500, new { Message = "Failed to save the user to the database." });
+
+        //        return Ok(new { Message = "User imported successfully from backoffice." });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode(500, new { Message = "An error occurred while importing the user.", Details = ex.Message });
+        //    }
+        //}
     }
 }

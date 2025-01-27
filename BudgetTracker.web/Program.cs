@@ -1,6 +1,7 @@
 using BudgetTracker.core.Services;
 using BudgetTracker.Core.Data;
 using BudgetTracker.Core.Extensions;
+using BudgetTracker.web.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +17,11 @@ builder.Services.AddDbContext<BudgetDbContext>(options =>
 builder.Services.AddScoped<BudgetService>();
 builder.Services.AddScoped<ExpenseService>();
 builder.Services.AddScoped<ReportService>();
+
+builder.Services.AddHttpClient<BackofficeUserService>(client =>
+{
+    client.BaseAddress = new Uri("https://localhost:44343");
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
