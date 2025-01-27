@@ -1,35 +1,45 @@
-﻿using System.Text.Json;
+﻿//using Newtonsoft.Json;
 
-namespace YourWebProject.Services
-{
-    public class BackofficeUserService
-    {
-        private readonly HttpClient _httpClient;
+//namespace BudgetTracker.web.Services
+//{
+//    public class BackofficeUserService
+//    {
+//        private readonly HttpClient _httpClient;
 
-        public BackofficeUserService(HttpClient httpClient)
-        {
-            _httpClient = httpClient;
-        }
+//        public BackofficeUserService(HttpClient httpClient)
+//        {
+//            _httpClient = httpClient;
+//        }
 
-        public async Task<BackofficeUserDto> GetBackofficeUserAsync(string username)
-        {
-            var response = await _httpClient.GetAsync($"https://your-site-project.com/api/backoffice-users/{username}");
-            if (!response.IsSuccessStatusCode)
-            {
-                throw new HttpRequestException($"Failed to fetch user: {response.ReasonPhrase}");
-            }
+//        // Method to fetch all backoffice members
+//        public async Task<IEnumerable<MemberDto>> GetAllBackofficeUsersAsync()
+//        {
+//            var response = await _httpClient.GetAsync("http://site-url/api/members");
+//            response.EnsureSuccessStatusCode();
 
-            var json = await response.Content.ReadAsStringAsync();
-            return JsonSerializer.Deserialize<BackofficeUserDto>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-        }
-    }
+//            var content = await response.Content.ReadAsStringAsync();
+//            return JsonConvert.DeserializeObject<IEnumerable<MemberDto>>(content);
+//        }
 
-    public class BackofficeUserDto
-    {
-        public int UserId { get; set; }
-        public string Username { get; set; }
-        public string Email { get; set; }
-        public string Name { get; set; }
-        public List<string> UserGroups { get; set; }
-    }
-}
+
+//        // Method to fetch a backoffice member by username
+//        //public async Task<MemberDto?> GetBackofficeUserAsync(string username)
+//        //{
+//        //    var response = await _httpClient.GetAsync($"api/members/{username}");
+//        //    if (!response.IsSuccessStatusCode)
+//        //        return null;
+
+//        //    var content = await response.Content.ReadAsStringAsync();
+//        //    return JsonConvert.DeserializeObject<MemberDto>(content);
+//        //}
+//    }
+
+//    // DTO for member data
+//    public class MemberDto
+//    {
+//        public int MemberId { get; set; }
+//        public string Username { get; set; }
+//        public string Email { get; set; }
+//        public string Name { get; set; }
+//    }
+//}

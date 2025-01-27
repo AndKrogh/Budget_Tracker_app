@@ -1,0 +1,87 @@
+[
+  {
+    "ContainingType": "BudgetTracker.web.Controllers.BudgetController",
+    "Method": "CreateBudget",
+    "RelativePath": "api/Budget",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "budget",
+        "Type": "BudgetTracker.core.Models.Budget",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BudgetTracker.web.Controllers.BudgetController",
+    "Method": "GetBudgetById",
+    "RelativePath": "api/Budget/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BudgetTracker.web.Controllers.BudgetController",
+    "Method": "UpdateBudget",
+    "RelativePath": "api/Budget/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "budget",
+        "Type": "BudgetTracker.core.Models.Budget",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BudgetTracker.web.Controllers.BudgetController",
+    "Method": "DeleteBudget",
+    "RelativePath": "api/Budget/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BudgetTracker.web.Controllers.BudgetController",
+    "Method": "GetBudgetsForUser",
+    "RelativePath": "api/Budget/user/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
