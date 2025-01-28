@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BudgetTracker.web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+32cd66771291afaf9ac2e1a15da833c10d8f2430")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+059e9b487b0a2194f8582033219cd786e7e57ce8")]
 [assembly: System.Reflection.AssemblyProductAttribute("BudgetTracker.web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BudgetTracker.web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -21,7 +21,9 @@ namespace BudgetTracker.web.Controllers
         {
             var budget = await _budgetService.GetBudgetByIdAsync(id);
             if (budget == null)
+            {
                 return NotFound(new { Message = $"Budget with ID {id} not found." });
+            }
 
             var budgetDto = new BudgetDto
             {
@@ -39,20 +41,24 @@ namespace BudgetTracker.web.Controllers
         public async Task<IActionResult> GetBudgetsForUser(int userId)
         {
             var budgets = await _budgetService.GetBudgetsForUserAsync(userId);
-            if (!budgets.Any())
+
+            if (budgets == null)
+            {
                 return NotFound(new { Message = $"No budgets found for user with ID {userId}." });
+            }
 
             var budgetDtos = budgets.Select(b => new BudgetDto
             {
                 Id = b.Id,
                 UserId = b.UserId,
                 Name = b.Name,
-                TotalIncome = b.BudgetEntries.Where(e => e.Amount > 0).Sum(e => e.Amount),
-                TotalExpenses = b.BudgetEntries.Where(e => e.Amount < 0).Sum(e => Math.Abs(e.Amount))
+                TotalIncome = b.BudgetEntries?.Where(e => e.Amount > 0).Sum(e => e.Amount) ?? 0,
+                TotalExpenses = b.BudgetEntries?.Where(e => e.Amount < 0).Sum(e => Math.Abs(e.Amount)) ?? 0
             }).ToList();
 
             return Ok(budgetDtos);
         }
+
 
         [HttpPost]
         public async Task<IActionResult> CreateBudget([FromBody] Budget budget)

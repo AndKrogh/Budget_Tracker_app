@@ -16,7 +16,7 @@ namespace BudgetTracker.core.Repositories
         public async Task<Budget> GetByIdAsync(int budgetId)
         {
             return await _context.Budgets
-                .Include(b => b.BudgetEntries) 
+                .Include(b => b.BudgetEntries)
                 .FirstOrDefaultAsync(b => b.Id == budgetId);
         }
 

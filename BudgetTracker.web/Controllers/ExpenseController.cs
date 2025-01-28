@@ -1,10 +1,9 @@
 ﻿using BudgetTracker.core.Services;
+using BudgetTracker.web.Dtos;
 using Microsoft.AspNetCore.Mvc;
-
 
 namespace BudgetTracker.web.Controllers
 {
-
     [ApiController]
     [Route("api/[controller]")]
     public class ExpenseController : ControllerBase
@@ -19,13 +18,26 @@ namespace BudgetTracker.web.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetExpensesByBudgetIdAsync(int id)
         {
-            var expense = await _expenseService.GetExpensesByBudgetIdAsync(id);
-            if (expense == null)
+            var budgetEntries = await _expenseService.GetExpensesByBudgetIdAsync(id);
+
+            if (budgetEntries == null || !budgetEntries.Any())
             {
-                return NotFound(new { Message = $"expense with id {id} not found" });
+                return NotFound(new { Message = $"Budget entries with ID {id} not found." });
             }
 
-            return Ok(expense);
+            var dtos = budgetEntries.Select(budgetEntry => new BudgetEntryDto
+            {
+                Id = budgetEntry.Id,
+                UserId = budgetEntry.UserId,
+                Date = budgetEntry.Date,
+                Category = budgetEntry.Category,
+                Amount = budgetEntry.Amount,
+                Description = budgetEntry.Description,
+                BudgetId = budgetEntry.BudgetId
+            }).ToList();
+
+            return Ok(dtos);
         }
+
     }
 }
