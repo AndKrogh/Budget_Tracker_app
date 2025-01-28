@@ -14,11 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BudgetTracker.core")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-<<<<<<< HEAD:BudgetTracker.core/obj/Debug/net8.0/BudgetTracker.core.AssemblyInfo.cs
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+830e02f23feacf1e7ed460ca22d3f51c7dbd7bfb")]
-=======
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5af4f3a82418a96fa572194dcb94b50be2e0c7cb")]
->>>>>>> Budget:BudgetTracker.core/obj/Release/net9.0/BudgetTracker.core.AssemblyInfo.cs
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+32cd66771291afaf9ac2e1a15da833c10d8f2430")]
 [assembly: System.Reflection.AssemblyProductAttribute("BudgetTracker.core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BudgetTracker.core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
