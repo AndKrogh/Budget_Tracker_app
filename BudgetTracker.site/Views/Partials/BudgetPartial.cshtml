@@ -1,0 +1,9 @@
+﻿@model List<BudgetDto>
+
+<h3>Budget Data</h3>
+<ul>
+    @foreach (var budget in Model)
+    {
+        <li>@budget.Name: @budget.Amount</li>
+    }
+</ul>

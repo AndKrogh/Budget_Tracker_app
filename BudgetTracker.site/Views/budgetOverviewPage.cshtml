@@ -1,5 +1,10 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models.PublishedContent
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 @{
 	Layout = "main.cshtml";
+
+	var budgets = Model.Value<IEnumerable<BudgetDto>>("budgets") ?? new List<BudgetDto>();
 }
+
+@await Html.PartialAsync("Partials/BudgetPartial", budgets)

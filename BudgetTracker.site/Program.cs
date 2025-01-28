@@ -10,6 +10,8 @@ builder.CreateUmbracoBuilder()
 // Add controllers
 builder.Services.AddControllers();
 
+builder.Services.AddHttpClient<BudgetService>();
+
 WebApplication app = builder.Build();
 
 await app.BootUmbracoAsync();
