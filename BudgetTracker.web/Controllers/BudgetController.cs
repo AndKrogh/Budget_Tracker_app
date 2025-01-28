@@ -1,5 +1,6 @@
 ﻿using BudgetTracker.core.Models;
 using BudgetTracker.core.Services;
+using BudgetTracker.web.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BudgetTracker.web.Controllers
@@ -22,7 +23,16 @@ namespace BudgetTracker.web.Controllers
             if (budget == null)
                 return NotFound(new { Message = $"Budget with ID {id} not found." });
 
-            return Ok(budget);
+            var budgetDto = new BudgetDto
+            {
+                Id = budget.Id,
+                UserId = budget.UserId,
+                Name = budget.Name,
+                TotalIncome = budget.BudgetEntries.Where(e => e.Amount > 0).Sum(e => e.Amount),
+                TotalExpenses = budget.BudgetEntries.Where(e => e.Amount < 0).Sum(e => Math.Abs(e.Amount))
+            };
+
+            return Ok(budgetDto);
         }
 
         [HttpGet("user/{userId}")]
@@ -32,7 +42,16 @@ namespace BudgetTracker.web.Controllers
             if (!budgets.Any())
                 return NotFound(new { Message = $"No budgets found for user with ID {userId}." });
 
-            return Ok(budgets);
+            var budgetDtos = budgets.Select(b => new BudgetDto
+            {
+                Id = b.Id,
+                UserId = b.UserId,
+                Name = b.Name,
+                TotalIncome = b.BudgetEntries.Where(e => e.Amount > 0).Sum(e => e.Amount),
+                TotalExpenses = b.BudgetEntries.Where(e => e.Amount < 0).Sum(e => Math.Abs(e.Amount))
+            }).ToList();
+
+            return Ok(budgetDtos);
         }
 
         [HttpPost]

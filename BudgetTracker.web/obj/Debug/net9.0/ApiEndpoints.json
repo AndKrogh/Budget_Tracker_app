@@ -99,5 +99,47 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BudgetTracker.web.Controllers.ReportController",
+    "Method": "GetExpenseForecastAsync",
+    "RelativePath": "api/Report/forecast/{budgetId}/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "budgetId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BudgetTracker.web.Controllers.ReportController",
+    "Method": "GenerateReportAsync",
+    "RelativePath": "api/Report/report/{budgetId}/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "budgetId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]
