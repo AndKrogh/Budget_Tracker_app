@@ -1,5 +1,4 @@
-﻿using BudgetTracker.core.Models;
-using BudgetTracker.core.Services;
+﻿using BudgetTracker.core.Services;
 using BudgetTracker.web.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,6 +13,28 @@ namespace BudgetTracker.web.Controllers
         public BudgetController(BudgetService budgetService)
         {
             _budgetService = budgetService;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllBudgets()
+        {
+            var budgets = await _budgetService.GetAllBudgetsAsync();
+
+            if (budgets == null || !budgets.Any())
+            {
+                return NotFound(new { Message = "No budgets found." });
+            }
+
+            var budgetDtos = budgets.Select(b => new BudgetDto
+            {
+                Id = b.Id,
+                UserId = b.UserId,
+                Name = b.Name,
+                TotalIncome = b.BudgetEntries?.Where(e => e.Amount > 0).Sum(e => e.Amount) ?? 0,
+                TotalExpenses = b.BudgetEntries?.Where(e => e.Amount < 0).Sum(e => Math.Abs(e.Amount)) ?? 0
+            }).ToList();
+
+            return Ok(budgetDtos);
         }
 
         [HttpGet("{id}")]
@@ -57,43 +78,6 @@ namespace BudgetTracker.web.Controllers
             }).ToList();
 
             return Ok(budgetDtos);
-        }
-
-
-        [HttpPost]
-        public async Task<IActionResult> CreateBudget([FromBody] Budget budget)
-        {
-            if (budget == null || budget.UserId <= 0 || string.IsNullOrWhiteSpace(budget.Name))
-                return BadRequest(new { Message = "Invalid budget data." });
-
-            var success = await _budgetService.CreateBudgetAsync(budget);
-            if (!success)
-                return StatusCode(500, new { Message = "Failed to create budget." });
-
-            return Ok(new { Message = "Budget created successfully.", BudgetId = budget.Id });
-        }
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateBudget(int id, [FromBody] Budget budget)
-        {
-            if (budget == null || budget.Id != id)
-                return BadRequest(new { Message = "Budget ID mismatch or invalid data." });
-
-            var success = await _budgetService.UpdateBudgetAsync(budget);
-            if (!success)
-                return StatusCode(500, new { Message = "Failed to update budget." });
-
-            return Ok(new { Message = "Budget updated successfully." });
-        }
-
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteBudget(int id)
-        {
-            var success = await _budgetService.DeleteBudgetAsync(id);
-            if (!success)
-                return StatusCode(500, new { Message = "Failed to delete budget." });
-
-            return Ok(new { Message = "Budget deleted successfully." });
         }
     }
 }

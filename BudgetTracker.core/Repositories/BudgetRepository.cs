@@ -13,6 +13,13 @@ namespace BudgetTracker.core.Repositories
             _context = context;
         }
 
+        public async Task<IEnumerable<Budget>> GetAllBudgetsAsync()
+        {
+            return await _context.Budgets
+                .Include(b => b.BudgetEntries)
+                .ToListAsync();
+        }
+
         public async Task<Budget> GetByIdAsync(int budgetId)
         {
             return await _context.Budgets

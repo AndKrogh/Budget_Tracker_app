@@ -12,6 +12,11 @@ namespace BudgetTracker.core.Services
             _budgetRepository = budgetRepository;
         }
 
+        public async Task<IEnumerable<Budget>> GetAllBudgetsAsync()
+        {
+            return await _budgetRepository.GetAllBudgetsAsync();
+        }
+
         public async Task<Budget> GetBudgetByIdAsync(int budgetId)
         {
             return await _budgetRepository.GetByIdAsync(budgetId);

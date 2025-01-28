@@ -1,9 +1,29 @@
-﻿@model List<BudgetDto>
+﻿@using BudgetTracker.web.Dtos
+@model List<BudgetDto>
 
-<h3>Budget Data</h3>
-<ul>
-    @foreach (var budget in Model)
-    {
-        <li>@budget.Name: @budget.Amount</li>
-    }
-</ul>
+@if (Model != null && Model.Any())
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Total Income</th>
+                <th>Total Expenses</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var budget in Model)
+            {
+                <tr>
+                    <td>@budget.Name</td>
+                    <td>@budget.TotalIncome.ToString("C")</td>
+                    <td>@budget.TotalExpenses.ToString("C")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No budgets available.</p>
+}

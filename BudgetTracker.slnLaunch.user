@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "Build Web and Site",
+    "Projects": [
+      {
+        "Path": "BudgetTracker.site\\BudgetTracker.site.csproj",
+        "Action": "StartWithoutDebugging"
+      },
+      {
+        "Path": "BudgetTracker.web\\BudgetTracker.web.csproj",
+        "Action": "StartWithoutDebugging"
+      }
+    ]
+  }
+]

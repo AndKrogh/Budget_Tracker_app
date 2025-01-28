@@ -9,8 +9,12 @@ builder.CreateUmbracoBuilder()
 
 // Add controllers
 builder.Services.AddControllers();
+builder.Services.AddHttpClient();
 
-builder.Services.AddHttpClient<BudgetService>();
+builder.Services.AddHttpClient<BudgetService>(client =>
+{
+    client.BaseAddress = new Uri("https://localhost:7151/");
+});
 
 WebApplication app = builder.Build();
 
