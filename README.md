@@ -1,6 +1,6 @@
 # Budget_Tracker_app
 
-# Welcome to Budget Tracker App. This application helps you track your finances and manage your budget with ease.
+Welcome to Budget Tracker App. This application helps you track your finances and manage your budget with ease.
 
 # Technologies Used
 
